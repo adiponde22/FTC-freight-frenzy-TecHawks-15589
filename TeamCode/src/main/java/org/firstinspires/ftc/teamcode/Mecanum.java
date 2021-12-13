@@ -62,7 +62,8 @@ import java.util.List;
                             Math.pow(leftStickY, 2)),
                     1);
             double thetaD = Math.atan2(-leftStickX, -leftStickY);
-            double vTheta = -rightStickX;
+            //changed this
+            double vTheta = rightStickX;
             return new Motion(vD, thetaD, vTheta);
         }
 

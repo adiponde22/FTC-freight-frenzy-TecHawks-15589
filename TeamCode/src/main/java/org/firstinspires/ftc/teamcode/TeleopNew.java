@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 
 
-@TeleOp(name="Ahen Main2", group="Neha")
+@TeleOp(name="AdiTeleOP")
 // @Disabled
 public class TeleopNew extends LinearOpMode {
 
@@ -32,6 +32,7 @@ public class TeleopNew extends LinearOpMode {
         // Send telemetry, message to signify robot waiting;
         telemetry.addData("Remember", "\"May the force of Reema, Miki, Neha, Ivan, Aarav, Marc, Albert and Abhi be with you.\" ");
         telemetry.update();
+        robot.duckSpin.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Which idiot wrote the documentation for this code? I have no idea what I'm doing - Ihba
 
@@ -46,8 +47,9 @@ public class TeleopNew extends LinearOpMode {
 
             // Convert joysticks to desired motion
             Mecanum.Motion motion = Mecanum.joystickToMotion(
-                    gamepad1.left_stick_x, -gamepad1.left_stick_y,
-                    gamepad1.right_stick_x, -gamepad1.right_stick_y);
+                    gamepad1.left_stick_x, gamepad1.left_stick_y,
+                    -gamepad1.right_stick_x, gamepad1.right_stick_y);
+
 
             // Convert desired motion to wheel powers, with power clamping
             Mecanum.Wheels wheels = Mecanum.motionToWheels(motion);
@@ -69,12 +71,58 @@ public class TeleopNew extends LinearOpMode {
             }
             //spin clockwise
             if (gamepad1.a) {
-                robot.duckSpin.setPower(-0.4);
+
+                    robot.duckSpin.setPower(-0.15);
+
+
             }
             //spin counter clockwise
             if (gamepad1.b) {
-                robot.duckSpin.setPower(0.4);
+                robot.duckSpin.setPower(0.15);
             }
+
+            //arm lift up & dowm
+            if (!gamepad1.x && !gamepad1.y)
+            {
+                robot.armSpin.setPower(0.1);
+            }
+
+            //spin clockwise
+            if (gamepad1.x) {
+
+                robot.armSpin.setPower(0.5);
+
+
+            }
+            //spin counter clockwise
+            if (gamepad1.y) {
+                robot.armSpin.setPower(-0.5);
+            }
+
+
+            if (!gamepad1.left_bumper)
+            {
+                robot.leftArm.setPosition(0.5);
+                robot.rightArm.setPosition(0.5);
+            }
+            //opening arm
+            if(gamepad1.left_bumper)
+            {
+
+              //  for (long timeA = System.currentTimeMillis()+500; System.currentTimeMillis() < timeA;)
+               // {
+                    robot.leftArm.setPosition(0.7);
+                    robot.rightArm.setPosition(0.3);
+
+                /*for (long timeA = System.currentTimeMillis()+200; System.currentTimeMillis() < timeA;)
+                {
+                    robot.leftArm.setPosition(0.5);
+                    robot.rightArm.setPosition(0.5);
+                }*/
+
+            }
+            //closing arm
+
 
 
         }

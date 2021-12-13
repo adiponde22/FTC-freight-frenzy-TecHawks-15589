@@ -85,6 +85,11 @@ public class HardwareMapCode
     public DcMotor  backLeft    = null;
     public DcMotor  backRight   = null;
     public DcMotor  duckSpin        = null;
+    public DcMotor  armSpin = null;
+    public Servo leftArm = null;
+    public Servo rightArm  = null;
+
+
     //  public ModernRoboticsI2cColorSensor colorSensor2= null;
 
     //    //ModernRoboticsI2cRangeSensor range;
@@ -112,6 +117,10 @@ public class HardwareMapCode
         backLeft  = hwMap.get(DcMotor.class, "BackLeft");
         backRight = hwMap.get(DcMotor.class, "BackRight");
         duckSpin = hwMap.get(DcMotor.class, "duckSpin");
+        armSpin = hwMap.get(DcMotor.class, "armSpin");
+        leftArm = hwMap.get(Servo.class, "leftArm");
+        rightArm = hwMap.get(Servo.class, "rightArm");
+
 
 //        lift = hwMap.get(DcMotor.class, "Lift");
 //
@@ -130,6 +139,7 @@ public class HardwareMapCode
         backLeft.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         backRight.setDirection(DcMotor.Direction.FORWARD);//
         duckSpin.setDirection(DcMotor.Direction.FORWARD);
+        armSpin.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
         frontLeft.setPower(0);
@@ -140,11 +150,11 @@ public class HardwareMapCode
         duckSpin.setPower(0);
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
-        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        duckSpin.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        duckSpin.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 //         Define and initialize ALL installed servos.
 
 
